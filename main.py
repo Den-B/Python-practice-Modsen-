@@ -1,6 +1,9 @@
-from csvFileReader.csvFileReader import CsvFileReader
+from source.database.mongoDatabase import MongoDatabase
+from ast import literal_eval
 
-reader = CsvFileReader("./data/posts.csv")
-result = reader.readAll()
-print(result['headers'])
-print(result['rows'][0])
+def currectionFunction(document):
+    document["rubrics"] = literal_eval(document["rubrics"])
+    return document
+
+database = MongoDatabase("mongodb://127.0.0.1:27066","Modsen")
+database.readCsvFile("./data/posts.csv", "Documents",currectionFunction)
