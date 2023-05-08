@@ -1,9 +1,11 @@
 from source.database.mongoDatabase import MongoDatabase
 from ast import literal_eval
-
+from constants import mongoCollection
+from constants import mongoDatabase
+from constants import mongoUrl
 
 def connectToDataBase():
-    database = MongoDatabase("mongodb://127.0.0.1:27066","Modsen")
+    database = MongoDatabase(mongoUrl,mongoDatabase)
     return database
     
 def writeRecordsFromCsvFile():
@@ -13,7 +15,7 @@ def writeRecordsFromCsvFile():
         return document
 
     database = connectToDataBase()
-    database.readCsvFile("../data/posts.csv", "Documents",currectionFunction)
+    database.readCsvFile("../data/posts.csv", mongoCollection,currectionFunction)
 
 
         

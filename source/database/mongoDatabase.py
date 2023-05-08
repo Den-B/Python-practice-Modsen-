@@ -29,7 +29,9 @@ class MongoDatabase:
         collection = self.database[collectionName]
         result = []
         for id in idArray:
-            result.append(collection.find_one({"_id":ObjectId(id)}))
+            document = collection.find_one({"_id":ObjectId(id)})
+            document["_id"]=str(document["_id"])
+            result.append(document)
         return sorted(result, key=lambda x: x["created_date"])
 
     def findOneById(self, collectionName, id):

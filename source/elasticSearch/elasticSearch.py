@@ -1,11 +1,15 @@
 from datetime import datetime
 from elasticsearch import Elasticsearch
+from constants import loginElastic
+from constants import passwordElastic
+from constants import portElastic
+from constants import hostElastic
 import json 
 
 class ElasticSeacrhForDatabase:
 
     def __init__(self):
-        self.elasticSearch = Elasticsearch(hosts=[{'host': 'localhost', 'port': 9200, "scheme": "https"}], basic_auth=("superuser","superuser"), verify_certs=False)
+        self.elasticSearch = Elasticsearch(hosts=[{'host': hostElastic, 'port': portElastic, "scheme": "https"}], basic_auth=(loginElastic, passwordElastic), verify_certs=False)
 
     def createIndex(self, indexName, rowGenerator):
         for row in rowGenerator():

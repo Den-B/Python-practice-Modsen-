@@ -7,5 +7,4 @@ searchRoute = Blueprint('routeSearch', __name__)
 
 @searchRoute.route('/search', methods=['GET'])
 def search():
-    return json.dumps({ "args":request.args})
-    #return search(searchRoute)
+    return searchRecords(request.args["query"])
