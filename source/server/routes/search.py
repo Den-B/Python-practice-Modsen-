@@ -1,8 +1,11 @@
 from flask import Blueprint
-from controllers.search import search
+from flask import request
+from source.server.controllers.search import searchRecords
+import json
 
 searchRoute = Blueprint('routeSearch', __name__)
 
-@searchRoute.route('/', methods=['GET'])
+@searchRoute.route('/search', methods=['GET'])
 def search():
-    return search(searchRoute)
+    return json.dumps({ "args":request.args})
+    #return search(searchRoute)

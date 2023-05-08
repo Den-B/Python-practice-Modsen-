@@ -1,8 +1,8 @@
 from flask import Blueprint
-from controllers.delete import delete
+from source.server.controllers.delete import deleterRecord
 
 deleteRoute = Blueprint('routeDelete', __name__)
 
-@deleteRoute.route('/document/<id>', methods=['GET'])
+@deleteRoute.route('/document/<id>', methods=['DELETE'])
 def delete(id):
-    return delete(deleteRoute)
+    return deleterRecord(id)
