@@ -10,5 +10,5 @@ def searchRecords(searchLine):
     resultOfSearch = elasticSearch.search(elsasticIndex, searchLine)
     hits = resultOfSearch["hits"]["hits"]
     idArray = map(lambda document: document["_id"], hits)
-    arrayOfPosts = connection.findById(mongoCollection, idArray)
+    arrayOfPosts = sorted(connection.findById(mongoCollection, idArray), key=lambda x: x["created_date"])
     return json.dumps({elsasticIndex: arrayOfPosts})

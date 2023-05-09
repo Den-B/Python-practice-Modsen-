@@ -16,7 +16,7 @@ class MongoDatabase:
         collection = self.database[collectionName]
         reader = CsvFileReader(fileName)
         for document in reader.rowStreamGenerator():
-            collection.insert_one(currectionFunction(document))
+           collection.insert_one(currectionFunction(document))
 
     def createDatabaseGenerator(self, collectionName):
         collection = self.database[collectionName]
@@ -32,7 +32,7 @@ class MongoDatabase:
             document = collection.find_one({"_id":ObjectId(id)})
             document["_id"]=str(document["_id"])
             result.append(document)
-        return sorted(result, key=lambda x: x["created_date"])
+        return result
 
     def findOneById(self, collectionName, id):
         collection = self.database[collectionName]

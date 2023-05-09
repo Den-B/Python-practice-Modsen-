@@ -8,14 +8,14 @@ def connectToDataBase():
     database = MongoDatabase(mongoUrl,mongoDatabase)
     return database
     
-def writeRecordsFromCsvFile():
+def writeRecordsFromCsvFile(fileName):
 
     def currectionFunction(document):
         document["rubrics"] = literal_eval(document["rubrics"])
         return document
 
     database = connectToDataBase()
-    database.readCsvFile("../data/posts.csv", mongoCollection,currectionFunction)
+    database.readCsvFile(fileName, mongoCollection,currectionFunction)
 
 
         

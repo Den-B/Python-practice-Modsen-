@@ -7,3 +7,5 @@ loginElastic = "superuser"
 passwordElastic = "superuser"
 hostElastic = "localhost"
 portElastic = 9200
+
+serverPort = 5000
